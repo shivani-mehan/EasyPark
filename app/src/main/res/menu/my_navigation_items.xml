@@ -2,21 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group>
-        <item android:id="@+id/nav_fav"
+        <item android:id="@+id/nav_res"
             android:icon="@drawable/ic_star_black_24dp"
-            android:title="@string/navigation_favourites" />
+            android:title="@string/navigation_reservations"
+            android:checkable="true"/>
 
         <item android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="@string/navigation_settings" />
+            android:title="@string/navigation_settings"
+            android:checkable="true"/>
 
         <item android:id="@+id/nav_about"
             android:icon="@drawable/ic_info_black_24dp"
-            android:title="@string/navigation_about" />
+            android:title="@string/navigation_about"
+            android:checkable="true"/>
 
         <item android:id="@+id/nav_logout"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
-            android:title="@string/navigation_logout" />
+            android:title="@string/navigation_logout"
+            android:checkable="true"/>
+
+        <item android:id="@+id/nav_none"
+            android:title=""
+            android:visible="false"
+            android:checkable="true"/>
+
     </group>
 
 </menu>
