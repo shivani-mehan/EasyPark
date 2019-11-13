@@ -69,7 +69,10 @@ public class ParkingLotActivity extends AppCompatActivity implements OnMapReadyC
 
 
         // Move to parking lot
-        if (!markerTitle.equals("Bricker Academic Parking Lot")){
+        if (markerTitle.equals("Lazaridis Hall Parking")) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(parkingPosition, (float)19));
+        }
+        else if (!markerTitle.equals("Bricker Academic Parking Lot")){
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(parkingPosition, (float)20.25));
         } else {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(parkingPosition, (float)19.25));

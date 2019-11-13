@@ -38,8 +38,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 
-// TODO: 2019-11-08  : - add parking lot interactivity for at least bricker + one more parking lot, make reservations page (how to send data from parking lot page?) + maybe quick simple settings + about page if time, + add a couple of hotspots and other parking lots near Laurier
-
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, OnNavigationItemSelectedListener, OnInfoWindowClickListener {
 
     private GoogleMap mMap;
@@ -131,6 +129,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ("Wilfrid Laurier University is a public univeristy in" + "\n" + "Waterloo, Ontario."
                 + "It was founded in 1911 and is" + "\n" + "named after the 7th Prime Minister of Canada."));
 
+        // Add Hotspots
+        hotspotMarkers();
+
         // Add parking Markers
         parkingMarkers();
 
@@ -139,6 +140,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnInfoWindowClickListener(this);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wlu, (float)16.5));
+
+    }
+
+    private void hotspotMarkers() {
+        // Starbucks
+        LatLng starbs = new LatLng(43.476379, -80.525306);
+        mMap.addMarker(new MarkerOptions().position(starbs).title("Starbucks").snippet
+                ("Address: 247 King St N, Waterloo" + "\n" +
+                        "Hours: 6am - 10:30pm" + "\n" + "Type: Coffeehouse/Cafe"));
+
+        // McDonalds
+        LatLng mcds = new LatLng(43.481790, -80.525578);
+        mMap.addMarker(new MarkerOptions().position(mcds).title("McDonalds").snippet
+                ("Address: 362 King Street N, Waterloo" + "\n" + "Hours: Open 24 hours"
+                        + "\n" + "Type: Fast food"));
+
+        // Phils
+        LatLng phils = new LatLng(43.475247, -80.524392);
+        mMap.addMarker(new MarkerOptions().position(phils).title("Phils").snippet
+                ("Address: 232 King Street N, Waterloo" + "\n" + "Hours: 9:30PM - 2:30AM WFSS"
+                        + "\n" + "Type: Nightclub"));
+
+        // Athletic Complex
+        LatLng AC = new LatLng(43.475314, -80.525647);
+        mMap.addMarker(new MarkerOptions().position(AC).title("Athletic Complex").snippet
+                ("Address: 232 King Street N, Waterloo" + "\n" + "Hours: 6:00AM - 11:00PM"
+                        + "\n" + "Type: Gym"));
 
     }
 
@@ -191,8 +219,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         "\n" +
                         getString(R.string.taken_spots) + " " +
                         String.format("%.0f", getRandomNumbers(1,30)) + "\n"
-                        + getString(R.string.parking_hours) + " " + "7am - 11pm" + "\n"
+                        + getString(R.string.parking_hours) + " " + "24/7" + "\n"
                         + getString(R.string.parking_price) + " " + "Gold and White Permits Only")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.parking)));
+
+        // Laz Hall
+        LatLng laz = new LatLng(43.475713, -80.530073);
+        mMap.addMarker(new MarkerOptions().position(laz)
+                .title("Lazaridis Hall Parking")
+                .snippet(getString(R.string.available_spots) + " " +
+                        String.format("%.0f", getRandomNumbers(1,15)) +
+                        "\n" +
+                        getString(R.string.taken_spots) + " " +
+                        String.format("%.0f", getRandomNumbers(1,30)) + "\n"
+                        + getString(R.string.parking_hours) + " " + "24/7" + "\n"
+                        + getString(R.string.parking_price) + " " + "Gold Permit + Pay & Display ($3/hr, $10/day)")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.parking)));
 
     }
