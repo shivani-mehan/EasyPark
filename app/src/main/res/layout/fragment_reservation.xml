@@ -21,14 +21,23 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp"
+            android:fontFamily="sans-serif-smallcaps"
             android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
             android:text="@string/navigation_reservations"
-            android:textSize="25sp"
             android:textColor="#000"
-            />
+            android:textSize="30sp"
+            android:paddingStart="15dp"
+            android:textStyle="italic" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/yellow" />
 
         <ListView
             android:id="@+id/list_view"

@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="60dp">
 
 
         <TextView
@@ -28,23 +28,22 @@
             android:id="@+id/latlong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:text="Latitude: 40.5925, Longititude: -80.4942"
+            android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/parkingName"
-            android:textStyle="italic"/>
+            app:layout_constraintTop_toBottomOf="@+id/parkingName" />
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="37dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="24dp"
-            android:paddingTop="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="35dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/parkingName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_star_black_24dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

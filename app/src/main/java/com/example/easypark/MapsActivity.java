@@ -1,6 +1,9 @@
 package com.example.easypark;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.easypark.ui.login.LoginActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -58,11 +62,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     // not granted.
     private final LatLng mDefaultLocation = new LatLng(43.474448, -80.528900);
 
+    // Reservation Info
+    String parkingLotName;
+    LatLng latlng;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        // Broadcast Receiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, new IntentFilter("INTENT_NAME"));
+
 
         // Build The Map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -86,6 +98,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            parkingLotName = intent.getStringExtra("markerTitle");
+            latlng = intent.getParcelableExtra("latlng");
+        }
+    };
 
     /**
      * Manipulates the map once available.
@@ -172,9 +192,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         getString(R.string.taken_spots) + " " +
                         String.format("%.0f", getRandomNumbers(1,30)) + "\n"
                         + getString(R.string.parking_hours) + " " + "7am - 11pm" + "\n"
-                        + getString(R.string.parking_price) + " " + "$3/hour or $10/day")
+                        + getString(R.string.parking_price) + " " + "Gold and White Permits Only")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.parking)));
-
 
     }
 
@@ -285,16 +304,35 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (menuItem.getItemId()){
 
             case R.id.nav_res:{
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                ReservationFragment fragment = new ReservationFragment();
-                fragmentTransaction.replace(R.id.drawer_layout, fragment).addToBackStack(null);
-                fragmentTransaction.commit();
+                if (parkingLotName != null && latlng != null) {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("parkingLotName", parkingLotName);
+                    bundle.putParcelable("latlng", latlng);
+
+                    ReservationFragment fragment = new ReservationFragment();
+                    fragment.setArguments(bundle);
+
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.drawer_layout, fragment).addToBackStack(null);
+                    fragmentTransaction.commit();
+                } else {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    ReservationFragment fragment = new ReservationFragment();
+                    fragmentTransaction.add(R.id.drawer_layout, fragment).addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
                 break;
             }
 
-            case R.id.nav_settings:{
-
+            case R.id.nav_legend:{
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                LegendFragment fragment = new LegendFragment();
+                fragmentTransaction.add(R.id.drawer_layout, fragment).addToBackStack(null);
+                fragmentTransaction.commit();
                 break;
             }
 

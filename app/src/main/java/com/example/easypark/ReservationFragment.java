@@ -15,22 +15,31 @@ import java.util.ArrayList;
 
 
 public class ReservationFragment extends Fragment {
+    String parkingLotName;
+    LatLng latLng;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_reservation, container, false);
 
-        ListView mListView = root.findViewById(R.id.list_view);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            parkingLotName = bundle.getString("parkingLotName");
+            latLng = bundle.getParcelable("latlng");
+        }
 
-        LatLng latlng = new LatLng(43.473044, -80.526571);
-        ReservationInfo res1 = new ReservationInfo("Bricker Academic Parking Lot", latlng);
+        // Set Up ListView
 
         ArrayList<ReservationInfo> reservationInfoArrayList = new ArrayList<>();
 
-        reservationInfoArrayList.add(res1);
-
-        ReservationListAdapter adapter = new ReservationListAdapter(getContext(), R.layout.adapter_list_view_item, reservationInfoArrayList );
-        mListView.setAdapter(adapter);
+        if (parkingLotName != null && latLng != null) {
+            ReservationInfo res = new ReservationInfo(parkingLotName, latLng);
+            reservationInfoArrayList.add(res);
+            ListView mListView = root.findViewById(R.id.list_view);
+            ReservationListAdapter adapter = new ReservationListAdapter(getContext(), R.layout.adapter_list_view_item, reservationInfoArrayList );
+            mListView.setAdapter(adapter);
+        }
 
         return root;
     }
+
 }

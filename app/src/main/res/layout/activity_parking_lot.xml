@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParkingLotActivity">
+    tools:context=".ParkingLotActivity"
+    android:id="@+id/parking_container">
 
     <include layout="@layout/content_parking_lot" />
 

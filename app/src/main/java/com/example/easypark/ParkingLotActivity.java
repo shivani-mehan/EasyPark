@@ -1,13 +1,16 @@
 package com.example.easypark;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -17,7 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-public class ParkingLotActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class ParkingLotActivity extends AppCompatActivity implements OnMapReadyCallback, OnMarkerDragListener {
 
     private GoogleMap mMap;
     LatLng parkingPosition;
@@ -45,8 +48,9 @@ public class ParkingLotActivity extends AppCompatActivity implements OnMapReadyC
             public void onClick(View view) {
                 Snackbar.make(view, "Reserved!", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                marker.getPosition();
 
+                Intent intent = new Intent("INTENT_NAME").putExtra("markerTitle", markerTitle).putExtra("latlng", marker.getPosition());
+                LocalBroadcastManager.getInstance(ParkingLotActivity.this).sendBroadcast(intent);
             }
         });
 
@@ -61,9 +65,10 @@ public class ParkingLotActivity extends AppCompatActivity implements OnMapReadyC
 
         // Set draggable markers
         marker = mMap.addMarker(new MarkerOptions().position(parkingPosition).draggable(true).icon(BitmapDescriptorFactory.fromResource(R.drawable.blue_dot)));
+        mMap.setOnMarkerDragListener(this);
 
 
-                // Move to parking lot
+        // Move to parking lot
         if (!markerTitle.equals("Bricker Academic Parking Lot")){
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(parkingPosition, (float)20.25));
         } else {
@@ -74,6 +79,18 @@ public class ParkingLotActivity extends AppCompatActivity implements OnMapReadyC
 
     }
 
+    @Override
+    public void onMarkerDragStart(Marker marker) {
 
+    }
 
+    @Override
+    public void onMarkerDrag(Marker marker) {
+
+    }
+
+    @Override
+    public void onMarkerDragEnd(Marker marker) {
+
+    }
 }
