@@ -121,7 +121,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Get Users Location
         getLocationPermission();
         updateLocationUI();
-        getDeviceLocation();
+//        getDeviceLocation();
 
         // Default Location: WLU
         LatLng wlu = new LatLng(43.473341, -80.529291);
@@ -139,7 +139,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
         mMap.setOnInfoWindowClickListener(this);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wlu, (float)16.5));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wlu, (float)16));
 
     }
 
@@ -380,7 +380,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.nav_about:{
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                LegendFragment fragment = new LegendFragment();
+                AboutFragment fragment = new AboutFragment();
                 fragmentTransaction.add(R.id.drawer_layout, fragment).addToBackStack(null);
                 fragmentTransaction.commit();
                 break;

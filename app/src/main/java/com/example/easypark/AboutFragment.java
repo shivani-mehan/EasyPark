@@ -1,3 +1,5 @@
+package com.example.easypark;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import com.example.easypark.R;
 
 public class AboutFragment extends Fragment {
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
