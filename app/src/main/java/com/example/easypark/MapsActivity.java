@@ -168,6 +168,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ("Address: 232 King Street N, Waterloo" + "\n" + "Hours: 6:00AM - 11:00PM"
                         + "\n" + "Type: Gym"));
 
+        // Athletic Complex
+        LatLng presoTea = new LatLng(43.474418, -80.531874);
+        mMap.addMarker(new MarkerOptions().position(presoTea).title("PresoTea").snippet
+                ("Address: 228 Albert Street, Waterloo" + "\n" + "Hours: 12:00PM - 11:00PM"
+                        + "\n" + "Type: Bubble Tea"));
+
     }
 
     private void parkingMarkers() {
@@ -234,6 +240,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         String.format("%.0f", getRandomNumbers(1,30)) + "\n"
                         + getString(R.string.parking_hours) + " " + "24/7" + "\n"
                         + getString(R.string.parking_price) + " " + "Gold Permit + Pay & Display ($3/hr, $10/day)")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.parking)));
+
+        // Kings Court
+        LatLng kc = new LatLng(43.480665, -80.526784);
+        mMap.addMarker(new MarkerOptions().position(kc)
+                .title("Kings Court Parking")
+                .snippet(getString(R.string.available_spots) + " " +
+                        String.format("%.0f", getRandomNumbers(1,15)) +
+                        "\n" +
+                        getString(R.string.taken_spots) + " " +
+                        String.format("%.0f", getRandomNumbers(1,30)) + "\n"
+                        + getString(R.string.parking_hours) + " " + "24/7" + "\n"
+                        + getString(R.string.parking_price) + " " + "Green Permit")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.parking)));
 
     }
