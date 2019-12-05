@@ -49,7 +49,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  EasyPark is an Android application made for\n  Wilfrid Laurier University's CP317 Course - \n  Software Engineering. It was coded by \n  Shivani Mehan on behalf of Group 4."
+                android:text="  EasyPark is an Android application made for\n  Wilfrid Laurier University's CP317 Course - \n  Software Engineering. It was made by \n  Group 4."
                 android:textColor="#000"
                 android:textSize="17sp"
                 app:layout_constraintBottom_toBottomOf="parent"
