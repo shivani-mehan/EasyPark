@@ -7,7 +7,9 @@ EasyPark is an Android app that provides real-time updates for parking lots in W
 EasyPark is an Android application, so in order to run the app Android Studio must be installed. The Android emulator used during development of the app is the Pixel 2 API 23. This is the recommended emulator to be used with the app.
 
 ## Run the Project 
-Clone this repository onto your computer. Open this project in Android Studio. If you don't have an emulator installed, open the AVD manager and click Create Virtual Device. Pick the recommened device from above (Pixel 2 API 23). Compile the project and run the program on the emulator. 
+Clone this repository onto your computer. Open this project in Android Studio. If you don't have an emulator installed, open the AVD manager and click Create Virtual Device. Pick the recommened device from above (Pixel 2 API 23). Compile the project and run the program on the emulator.  
+
+To access the specific parking lot page where you can reserve a parking spot, tap the parking marker for the parking lot you want and then tap the info window that appears above the marker (it should have information on the parking lot, number of available vs taken spots, as well as payment options). Tapping on this info window takes you to a new page where you can reserve a parking space.
 
 ## Key Features 
 - Parking markers for main parking lots within Wilfrid Laurier University and the surrounding area
