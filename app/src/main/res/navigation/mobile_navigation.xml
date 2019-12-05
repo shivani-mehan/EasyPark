@@ -21,5 +21,5 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.easypark.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_about" />
 </navigation>

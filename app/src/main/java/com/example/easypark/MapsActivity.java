@@ -378,7 +378,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             case R.id.nav_about:{
-
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                LegendFragment fragment = new LegendFragment();
+                fragmentTransaction.add(R.id.drawer_layout, fragment).addToBackStack(null);
+                fragmentTransaction.commit();
                 break;
             }
 
